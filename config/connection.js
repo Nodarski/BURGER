@@ -1,11 +1,11 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  host: "wftuqljwesiffol6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user: "aenv0eeounfaczsk",
+  password: "t9hiscdcesxxo3se",
   port: 3306,
-  database: "burgerDump",
+  database: "nrli383nuquun4jq",
   multipleStatements: true
 });
 
