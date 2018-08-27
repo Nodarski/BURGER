@@ -1,0 +1,90 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href='/assets/css/burger_style.css'>
+    <title>Burger</title>
+  </head>
+  <body>
+
+    <div class='container-fluid'>
+
+        <div class='row'>
+            <div class='col d-flex flex-column'>
+                <h1 class='mx-auto my-2'>Welcome to McDonalds. What ya tryna eat?</h1>
+                <img class='mx-auto my-2' src='/assets/img/MCKEEDEE.svg' width='400' height='200'>
+            </div>
+        </div>
+
+        <div class='row'>
+            {{{body}}}
+        </div>
+
+        <div class='row'>
+            <div class='col d-flex justify-content-center my-3'>
+                <form class='d-flex flex-column w-50'>
+                    <div class="form-group">
+                        <label for="orderSubmit"></label>
+                        <textarea class="form-control" id="orderSubmit" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary bg bg-success" id='orderUp'>Place your order</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+    <script>
+
+        $('form').on('click', '#orderUp', function() {
+            if ($('#orderSubmit').val()){
+            var burgerOrder = {
+                burgerName: $('#orderSubmit').val(),
+                inBelly: false
+            };
+            $.ajax({
+                url: '/insert',
+                type: 'POST',
+                dataType: 'json',
+                data: burgerOrder,
+                success: function(data) {
+                    window.location.href = data.redirect_url;
+                }
+            });
+            } else { 
+                alert('Orders must contain something.')
+                alert('if youre not hungry, go home.')
+            }
+        });
+
+        $('.putInBelly').on('click', function() {
+            var eatBurger = {
+                burgerName: $(this).attr('burger-data')
+            };
+            $.ajax({
+                url: '/update',
+                type: 'PUT',
+                dataType: 'json',
+                data: eatBurger,
+                success: function(data) {
+                    window.location.href = data.redirect_url;
+                }
+            });
+        });
+
+    </script>
+
+  </body>
+</html>

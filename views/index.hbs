@@ -1,0 +1,28 @@
+
+<div class='col-6 d-flex flex-column'>
+
+    {{#each burgers}}
+
+        {{#unless inBelly}}
+
+            <div class='mx-auto'><button class='btn btn-info d-inline mx-2 putInBelly' burger-data='{{burgerName}}'>Put it in my Belly</button><h3 class='d-inline'>{{burgerName}}</h3></div>
+
+        {{/unless}}
+
+    {{/each}}
+
+</div>
+
+<div class='col-6 d-flex flex-column'>
+
+    {{#each burgers}}
+
+        {{#if inBelly}}
+
+            <div class='mx-auto my-1'><span class='bg bg-white rounded d-inline mx-2 p-2'>Im lovin' it</span><h3 class='d-inline'>{{burgerName}}</h3></div>
+
+        {{/if}}
+
+    {{/each}}
+
+</div>
