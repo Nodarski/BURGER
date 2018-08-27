@@ -4,7 +4,7 @@ var parser = require('body-parser');
 var handlebars  = require('express-handlebars');
 var express = require('express');
 var app = express();
-var port = process.env.PORT;
+var port = process.env.PORT || 3000;
 
 app.engine('hbs', handlebars({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', 'hbs');

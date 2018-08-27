@@ -1,13 +1,20 @@
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: "wftuqljwesiffol6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "aenv0eeounfaczsk",
-  password: "t9hiscdcesxxo3se",
-  port: 3306,
-  database: "nrli383nuquun4jq",
-  multipleStatements: true
-});
+var con;
+if(process.env.JAWSDB_URL) {
+  //Heroku deployment
+    con = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  //local host
+    con = mysql.createConnection({
+        root: 3000,
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "burgerDump",
+    });
+};
+
 
 con.connect(function(err) {
   if (err) throw err;
